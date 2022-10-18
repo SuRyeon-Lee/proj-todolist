@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# 🗒 todolist 만들기
+* 벨로퍼트의 todolist 만들기를 토대로 json-server 버전으로 변경하였습니다.
+* 스타일은 따로 프로토타입 제작하지 않고 만들었습니다.
+* [배포 페이지 링크](https://suryeon-lee.github.io/proj-todolist/) - json-server를 이용한 개발용 서버가 연결되어 있기 때문에 로컬에 다운받아 서버를 켜야 기능을 모두 확인할 수 있습니다.   
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br/><br/>
 
-## Available Scripts
+## 💡 미리보기
+![미리보기](./screenshot.gif) 
 
-In the project directory, you can run:
+<br/><br/>
 
-### `npm start`
+## 🐛 소소한 에러 핸들링
+* gh-pages를 이용해서 깃허브 페이지에 배포중 에러가 났는데, 배포화면에 아무것도 안보이는 현상이 발생했다.
+```bash
+    :ERR_ABORTED 404 on github pages #대충 이런 메세시 였다.
+```
+[링크](https://intrepidgeeks.com/tutorial/everything-deployed-by-gh-pages)를 참고하여 문제를 해결하였다.
+```js
+    //index.js
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+    //...중략
+    import { BrowserRouter } from 'react-router-dom';
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    //...중략
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(
+        //BrowserRouter로 감싸고 basename에 기본 환경변수 넣기 
+        //루트와 repository를 일치시켜주는 과정
+        <BrowserRouter basename={process.env.PUBLIC_URL}> 
+            <React.StrictMode>
+            <App />
+            </React.StrictMode>
+        </BrowserRouter>
+    );
+```
